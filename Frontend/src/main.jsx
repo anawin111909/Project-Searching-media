@@ -1,22 +1,25 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import { StrictMode } from 'react';
+import * as ReactDOM from 'react-dom/client';
+import './index.css';
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from 'react-router-dom';
+
 import LoginPage from './pages/LoginPage';
-import './index.css';
+import SearchPage from './pages/SearchPage'; // เพิ่มตรงนี้
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <StrictMode>
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/search" element={<SearchPage />} /> {/* ✅ เพิ่มตรงนี้ */}
       </Routes>
     </Router>
-  </React.StrictMode>
+  </StrictMode>
 );
