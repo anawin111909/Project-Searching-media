@@ -1,4 +1,3 @@
-// frontend/src/pages/LoginPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,30 +29,23 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ padding: '2rem' }} className="text-white">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div>
           <label>Email: </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div>
           <label>Password: </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
         <button type="submit">Login</button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
+      <p className="mt-4 underline cursor-pointer" onClick={() => navigate('/register')}>
+        Don't have an account? Register
+      </p>
     </div>
   );
-} 
+}

@@ -6,6 +6,8 @@ export default function SearchPage() {
   const [images, setImages] = useState([]);
   const [error, setError] = useState('');
 
+
+  
   const fetchHistory = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -58,8 +60,8 @@ export default function SearchPage() {
         throw new Error(errData.detail || 'Search failed');
       }
 
-      await fetchHistory();      // อัปเดตประวัติ
-      await fetchImages(query);  // โหลดรูป
+      await fetchHistory();      
+      await fetchImages(query);  
       setQuery('');
     } catch (err) {
       setError(err.message);
