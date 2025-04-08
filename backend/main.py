@@ -118,3 +118,12 @@ def proxy_openverse(query: str = Query(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/search")
+def search_images(q: str = Query(...), current_user: User = Depends(get_current_user)):
+    try:
+        url = f"https://api.openverse.engineering/v1/images?q={q}"
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
