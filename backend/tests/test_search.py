@@ -10,6 +10,7 @@ def test_search_image():
     }).json()["access_token"]
     headers = {"Authorization": f"Bearer {token}"}
 
-    res = client.get("/search?q=cat", headers=headers)
+    res = client.get("/openverse?query=cat", headers=headers)
     assert res.status_code == 200
     assert "results" in res.json()
+
