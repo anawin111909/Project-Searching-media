@@ -8,14 +8,14 @@ from main import app
 client = TestClient(app)
 
 def test_register_and_login():
-    # ทดสอบ Register
+    # Register Testing
     res = client.post("/register", json={
         "email": "testuser@example.com",
         "password": "testpass"
     })
-    assert res.status_code in [200, 400]  # 400 ถ้าเคยสมัครไว้แล้ว
+    assert res.status_code in [200, 400]
 
-    # ทดสอบ Login
+    #Login Tessing
     res = client.post("/login", json={
         "email": "testuser@example.com",
         "password": "testpass"

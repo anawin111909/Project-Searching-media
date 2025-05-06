@@ -1,7 +1,7 @@
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 
-SECRET_KEY = "super-secret-key"  # ควรเปลี่ยนในโปรดักชัน
+SECRET_KEY = "super-secret-key"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

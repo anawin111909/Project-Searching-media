@@ -107,21 +107,24 @@ def delete_history(history_id: int, db: Session = Depends(get_db), current_user:
     db.commit()
     return {"message": "Search history deleted"}
 
-# ------------------ PROXY ROUTE FOR OPENVERSE ------------------
+# ------------------ IMAGE SEARCH (Openverse Proxy with Filters) ------------------
 
 @app.get("/openverse")
-def proxy_openverse(query: str = Query(...)):
+def proxy_openverse(
+    query: str = Query(...),
+    license: str = Query(None),
+    source: str = Query(None),
+    extension: str = Query(None)
+):
     try:
-        response = requests.get(f"https://api.openverse.engineering/v1/images?q={query}")
-        response.raise_for_status()
-        return response.json()
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        url = f"https://api.openverse.engineering/v1/images?q={query}"
+        if license:
+            url += f"&license={license}"
+        if source:
+            url += f"&source={source}"
+        if extension:
+            url += f"&extension={extension}"
 
-@app.get("/search")
-def search_images(q: str = Query(...), current_user: User = Depends(get_current_user)):
-    try:
-        url = f"https://api.openverse.engineering/v1/images?q={q}"
         response = requests.get(url)
         response.raise_for_status()
         return response.json()
