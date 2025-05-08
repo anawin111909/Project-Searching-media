@@ -3,7 +3,6 @@ import SearchPage from '../pages/SearchPage';
 import { BrowserRouter } from 'react-router-dom';
 
 beforeEach(() => {
-  // mock token
   localStorage.setItem('token', 'fake-token');
 });
 
@@ -67,7 +66,7 @@ describe('SearchPage', () => {
       </BrowserRouter>
     );
 
-    const input = screen.getByPlaceholderText(/search/i)
+    const input = screen.getByPlaceholderText(/search/i);
     const button = screen.getByRole('button', { name: /search/i });
 
     fireEvent.change(input, { target: { value: 'dog' } });
