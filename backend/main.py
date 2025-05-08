@@ -96,7 +96,9 @@ def save_search(input: QueryInput, db: Session = Depends(get_db), current_user: 
 
 @app.get("/search-history")
 def get_search_history(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    return db.query(SearchHistory).filter(SearchHistory.user_id == current_user.id).all()
+    history = db.query(SearchHistory).filter(SearchHistory.user_id == current_user.id).all()
+    return [{"id": h.id, "query": h.query, "timestamp": h.timestamp.isoformat()} for h in history]
+
 
 @app.delete("/search-history/{history_id}")
 def delete_history(history_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
@@ -130,3 +132,9 @@ def proxy_openverse(
         return response.json()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+# ------------------ ROOT CHECK ------------------
+
+@app.get("/")
+def root():
+    return {"message": "Backend is running!"}

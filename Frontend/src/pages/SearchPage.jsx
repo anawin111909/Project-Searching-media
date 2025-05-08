@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function SearchPage() {
   const [query, setQuery] = useState('');
@@ -6,17 +6,52 @@ export default function SearchPage() {
   const [license, setLicense] = useState('');
   const [source, setSource] = useState('');
   const [extension, setExtension] = useState('');
+  const [history, setHistory] = useState([]); 
 
   const handleSearch = async () => {
     let url = `http://localhost:8000/openverse?query=${query}`;
     if (license) url += `&license=${license}`;
     if (source) url += `&source=${source}`;
     if (extension) url += `&extension=${extension}`;
-
-    const res = await fetch(url);
+  
+    const token = localStorage.getItem('token');  
+    const res = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     const data = await res.json();
     setResults(data.results);
+  
+  
+    await fetch('http://localhost:8000/search-history', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ query }),
+    });
+  
+ 
+    fetchHistory();
   };
+  
+
+  const fetchHistory = async () => {
+    const token = localStorage.getItem('token');
+    const res = await fetch('http://localhost:8000/search/history', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await res.json();
+    setHistory(data); 
+  };
+
+  useEffect(() => {
+    fetchHistory(); 
+  }, []);
 
   return (
     <div style={{ padding: '1rem' }}>
@@ -46,6 +81,15 @@ export default function SearchPage() {
         </select>
       </div>
       <button onClick={handleSearch} style={{ marginTop: '1rem' }}>Search</button>
+
+      <div style={{ marginTop: '2rem' }}>
+        <h3>Search History</h3>
+        <ul>
+          {history.map((item, index) => (
+            <li key={index}>{item.query}</li>
+          ))}
+        </ul>
+      </div>
 
       <div style={{ marginTop: '2rem' }}>
         {results.map((img) => (
