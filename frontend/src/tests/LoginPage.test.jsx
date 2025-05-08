@@ -30,5 +30,6 @@ describe('LoginPage', () => {
 
     expect(emailInput.value).toBe('test@example.com');
     expect(passwordInput.value).toBe('123456');
+    
   });
 });
