@@ -1,4 +1,3 @@
-# tests/test_search_history.py
 from fastapi.testclient import TestClient
 from main import app
 
@@ -13,6 +12,7 @@ def get_token():
         "email": "test@example.com",
         "password": "123456"
     })
+    assert res.status_code == 200
     return res.json()["access_token"]
 
 def test_search_history_flow():

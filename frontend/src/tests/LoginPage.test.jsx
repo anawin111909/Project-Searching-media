@@ -28,7 +28,7 @@ describe('LoginPage', () => {
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.change(passwordInput, { target: { value: '123456' } });
 
-    expect(emailInput).toHaveValue('test@example.com');
-    expect(passwordInput).toHaveValue('123456');
+    expect(emailInput.value).toBe('test@example.com');
+    expect(passwordInput.value).toBe('123456');
   });
 });
