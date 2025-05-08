@@ -17,7 +17,7 @@ from auth.jwt import create_access_token, SECRET_KEY, ALGORITHM
 # ------------------ CONFIGURATION ------------------
 
 # Automatically switch to SQLite in CI/testing
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@db/dbname")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@db/search_history")
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 
 # Create engine dynamically
