@@ -2,11 +2,13 @@ from fastapi import FastAPI, Depends, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
 from jose import JWTError, jwt
 from pydantic import BaseModel
 import requests
+import os
 
-from database import SessionLocal, engine, Base
+from database import SessionLocal, Base
 from models.user import User
 from models.history import SearchHistory
 from auth.hash import hash_password, verify_password
@@ -14,7 +16,14 @@ from auth.jwt import create_access_token, SECRET_KEY, ALGORITHM
 
 # ------------------ CONFIGURATION ------------------
 
+# Automatically switch to SQLite in CI/testing
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@db/dbname")
+connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+
+# Create engine dynamically
+engine = create_engine(DATABASE_URL, connect_args=connect_args)
 Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 
 app.add_middleware(
@@ -105,8 +114,6 @@ def get_search_history(db: Session = Depends(get_db), current_user: User = Depen
         }
         for h in history
     ]
-
-
 
 @app.delete("/search-history/{history_id}")
 def delete_history(history_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
