@@ -97,7 +97,15 @@ def save_search(input: QueryInput, db: Session = Depends(get_db), current_user: 
 @app.get("/search-history")
 def get_search_history(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     history = db.query(SearchHistory).filter(SearchHistory.user_id == current_user.id).all()
-    return [{"id": h.id, "query": h.query, "timestamp": h.timestamp.isoformat()} for h in history]
+    return [
+        {
+            "id": h.id,
+            "query": h.query,
+            "timestamp": h.timestamp.isoformat() if h.timestamp else None
+        }
+        for h in history
+    ]
+
 
 
 @app.delete("/search-history/{history_id}")

@@ -40,3 +40,211 @@
 .read-the-docs {
   color: #888;
 }
+.register-link {
+  color: lightblue;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.register-link:hover {
+  color: orange;
+}
+.register-link {
+  color: lightblue;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.register-link:hover {
+  color: orange;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.login-box h2 {
+  margin-bottom: 1rem;
+}
+
+.login-box label {
+  display: block;
+  margin-top: 1rem;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: white;
+}
+
+.login-box button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.6rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #333;
+}
+
+.register-link {
+  color: lightblue;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.register-link:hover {
+  color: orange;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.login-box button {
+  padding: 0.5rem 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+.login-box button:hover {
+  background-color: #333;
+}
+
+.register-link {
+  color: lightblue;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.register-link:hover {
+  color: orange;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+}
+
+
+.search-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+
+.search-container input,
+.search-container select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 5px;
+}
+
+
+.search-container button {
+  padding: 0.5rem 1.5rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #333;
+}
+
+.search-history {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c2c2c;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.history-item button {
+  background: darkred;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+
+.history-item button:hover {
+  background: red;
+}

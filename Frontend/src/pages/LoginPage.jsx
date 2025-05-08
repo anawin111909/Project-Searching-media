@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import '../App.css'; 
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -29,38 +30,41 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ padding: '2rem' }} className="text-white">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </form>
-      <p
-        className="mt-4 underline cursor-pointer"
-        onClick={() => navigate('/register')}
-      >
-        Don't have an account? Register
-      </p>
+    <div className="login-container">
+      <div className="login-box text-white">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin}>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+          {error && <p className="error">{error}</p>}
+        </form>
+        <p>
+          Don’t have an account?{' '}
+          <span onClick={() => navigate('/register')} className="register-link">
+            Register
+          </span>
+        </p>
+      </div>
     </div>
   );
+  
 }
