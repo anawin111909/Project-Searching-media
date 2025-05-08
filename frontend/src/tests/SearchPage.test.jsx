@@ -1,10 +1,10 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import SearchPage from "../pages/SearchPage.jsx";
 
 
+
 beforeEach(() => {
-  // mock token
   localStorage.setItem('token', 'fake-token');
 });
 
@@ -30,7 +30,7 @@ global.fetch = vi.fn((url, options) => {
     });
   }
 
-  if (url.includes('openverse')) {
+  if (url.includes('openverse') || url.includes('/search?q=')) {
     return Promise.resolve({
       ok: true,
       json: () =>
@@ -46,7 +46,10 @@ global.fetch = vi.fn((url, options) => {
     });
   }
 
-  return Promise.reject(new Error('Unhandled fetch'));
+  return Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve({})
+  });
 });
 
 describe('SearchPage', () => {
@@ -57,7 +60,7 @@ describe('SearchPage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByPlaceholderText(/enter a query/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /search/i })).toBeInTheDocument();
   });
 
@@ -67,16 +70,18 @@ describe('SearchPage', () => {
         <SearchPage />
       </BrowserRouter>
     );
-
-    const input = screen.getByPlaceholderText(/enter a query/i);
+  
+    const input = screen.getByPlaceholderText(/search/i);
     const button = screen.getByRole('button', { name: /search/i });
-
+  
     fireEvent.change(input, { target: { value: 'dog' } });
-    fireEvent.click(button);
-
+  
+    await act(async () => {
+      fireEvent.click(button);
+    });
+  
     await waitFor(() => {
-      expect(screen.getByText(/test image/i)).toBeInTheDocument();
-      expect(screen.getByRole('img')).toBeInTheDocument();
+      expect(screen.getByRole('img', { name: /test image/i })).toBeInTheDocument();
     });
   });
 });

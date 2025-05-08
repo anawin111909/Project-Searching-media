@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import '../App.css'; 
+import '../App.css';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -33,27 +33,29 @@ export default function RegisterPage() {
       <div className="login-box">
         <h2>Register</h2>
         <form onSubmit={handleRegister}>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit">Register</button>
-          {error && <p className="error">{error}</p>}
-        </form>
+  <div>
+    <label htmlFor="email">Email:</label>
+    <input
+      id="email"
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      required
+    />
+  </div>
+  <div>
+    <label htmlFor="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+          />
+        </div>
+        <button type="submit">Register</button>
+        {error && <p className="error">{error}</p>}
+      </form>
         <p>
           Already have an account?{' '}
           <Link to="/login" className="register-link">

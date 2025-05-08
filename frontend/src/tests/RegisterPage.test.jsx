@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Register from '../pages/Register';
+import RegisterPage from "../pages/Register"; 
 import { BrowserRouter } from 'react-router-dom';
 
 describe('RegisterPage', () => {
   test('renders register form', () => {
     render(
       <BrowserRouter>
-        <Register />
+        <RegisterPage />
       </BrowserRouter>
     );
 
@@ -19,7 +19,7 @@ describe('RegisterPage', () => {
   test('allows user to type in email and password', async () => {
     render(
       <BrowserRouter>
-        <Register />
+        <RegisterPage />
       </BrowserRouter>
     );
 
