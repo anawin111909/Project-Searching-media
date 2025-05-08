@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import SearchPage from '../pages/SearchPage';
+import SearchPage from "../pages/SearchPage.jsx";
 
 
 beforeEach(() => {
