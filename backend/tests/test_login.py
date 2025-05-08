@@ -3,10 +3,16 @@ from main import app
 
 client = TestClient(app)
 
-def create_test_user():
+def setup_module(module):
     client.post("/register", json={
         "email": "test@example.com",
         "password": "123456"
     })
+
+def test_login_valid_credentials():
+    res = client.post("/login", json={
+        "email": "test@example.com",
+        "password": "123456"
+    })
     assert res.status_code == 200
-    return res.json()["access_token"]
+    assert "access_token" in res.json()

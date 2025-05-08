@@ -4,7 +4,7 @@ from main import app
 client = TestClient(app)
 
 def setup_module(module):
-    # ลงทะเบียน user ถ้ายังไม่มี
+    # Ensure test user is registered
     client.post("/register", json={
         "email": "test@example.com",
         "password": "123456"
@@ -15,7 +15,7 @@ def test_search_image():
         "email": "test@example.com",
         "password": "123456"
     })
-    assert res.status_code == 200
+    assert res.status_code == 200, res.text
     token = res.json()["access_token"]
     headers = {"Authorization": f"Bearer {token}"}
 
