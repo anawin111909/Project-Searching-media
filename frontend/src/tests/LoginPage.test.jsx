@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage';
+import LoginPage from '../pages/LoginPage.jsx'; 
 
 describe('LoginPage', () => {
   test('renders login form', () => {
