@@ -57,7 +57,7 @@ describe('SearchPage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/enter a query/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /search/i })).toBeInTheDocument();
   });
 
@@ -68,14 +68,14 @@ describe('SearchPage', () => {
       </BrowserRouter>
     );
 
-    const input = screen.getByPlaceholderText(/search/i)
+    const input = screen.getByPlaceholderText(/enter a query/i);
     const button = screen.getByRole('button', { name: /search/i });
 
     fireEvent.change(input, { target: { value: 'dog' } });
     fireEvent.click(button);
 
     await waitFor(() => {
-      expect(screen.getByAltText(/test image/i)).toBeInTheDocument();
+      expect(screen.getByText(/test image/i)).toBeInTheDocument();
       expect(screen.getByRole('img')).toBeInTheDocument();
     });
   });

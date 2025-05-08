@@ -5,4 +5,4 @@ client = TestClient(app)
 
 def test_register_user():
     res = client.post("/register", json={"email": "test@example.com", "password": "test123"})
-    assert res.status_code == 200 or res.status_code == 400
+    assert res.status_code == 200 or res.status_code == 400  # Duplicate email address.
