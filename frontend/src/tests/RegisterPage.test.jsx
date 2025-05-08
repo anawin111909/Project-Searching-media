@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import RegisterPage from "../pages/Register"; 
+import RegisterPage from "../pages/Register.jsx"; 
 import { BrowserRouter } from 'react-router-dom';
 
 describe('RegisterPage', () => {
