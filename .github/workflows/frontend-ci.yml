@@ -33,6 +33,6 @@ jobs:
         working-directory: frontend/src
 
       - name: Run frontend tests
-        run: npm test -- --watchAll=false
-        working-directory: frontend/src
+        run: npm run test
+        working-directory: frontend
 
